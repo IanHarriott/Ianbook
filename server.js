@@ -11,8 +11,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 //db
+const connectionString = process.env.MONGO_URI || "";
 mongoose
-	.connect(process.env.MONGO_URI, {
+	.connect(connectionString, {
 		useUnifiedTopology: true,
 		useNewUrlParser: true
 	})
@@ -56,7 +57,6 @@ app.use(function(err, req, res, next) {
 	}
 });
 
-const port = 5000;
-app.listen(port, () => {
-	console.log(`A Node Js API is listening on port: ${port}`);
+app.listen(process.env.PORT, () => {
+	console.log(`A Node Js API is listening on port: ${process.env.PORT}`);
 });

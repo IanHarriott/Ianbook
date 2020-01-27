@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-		"client-install": "npm install --prefix client",
+		"heroku-postbuild": "cd client && npm i && npm run build && cd .. && rm -rf ./public && mv ./client/build ./public",
 		"start": "node server.js",
 		"server": "nodemon server.js",
 		"client": "npm start --prefix client",
@@ -29,6 +29,10 @@
 		"nodemailer": "^6.4.2",
 		"uuid": "^3.4.0"
 	},
+	"engines": {
+		"node": "^10.0.0",
+		"npm": ">= 6.4.1"
+	  },
 	"devDependencies": {
 		"nodemon": "^2.0.2"
 	}
