@@ -4,6 +4,7 @@ const { sendEmail } = require('../helpers');
 const expressJwt = require('express-jwt');
 const User = require('../models/user');
 const _ = require('lodash');
+const appSecret = process.env.JWT_SECRET || "testsecret";
 
 exports.register = async (req, res) => {
 	const userExists = await User.findOne({ email: req.body.email });
@@ -34,7 +35,7 @@ exports.login = (req, res) => {
 			});
 		}
 		//generate a token with user id and secret
-		const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+		const token = jwt.sign({ _id: user._id }, appSecret);
 		//persist the token as 't' in cooke with expiry date
 		res.cookie('t', token, { expire: new Date() + 9999 });
 		//return response with user and token to frontend client
@@ -51,7 +52,7 @@ exports.logout = (req, res) => {
 exports.requireLogin = expressJwt({
 	//if the token is valid, express jwt appends the verified users id
 	//in an auth key to the request object
-	secret: process.env.JWT_SECRET,
+	secret: appSecret,
 	userProperty: 'auth'
 });
 
@@ -75,7 +76,7 @@ exports.forgotPassword = (req, res) => {
 		// generate a token with user id and secret
 		const token = jwt.sign(
 			{ _id: user._id, iss: 'NODEAPI' },
-			process.env.JWT_SECRET
+			appSecret
 		);
 
 		// email data
@@ -149,7 +150,7 @@ exports.socialLogin = (req, res) => {
 			// generate a token with user id and secret
 			const token = jwt.sign(
 				{ _id: user._id, iss: 'NODEAPI' },
-				process.env.JWT_SECRET
+				appSecret
 			);
 			res.cookie('t', token, { expire: new Date() + 9999 });
 			// return response with user and token to frontend client
@@ -164,7 +165,7 @@ exports.socialLogin = (req, res) => {
 			// generate a token with user id and secret
 			const token = jwt.sign(
 				{ _id: user._id, iss: 'NODEAPI' },
-				process.env.JWT_SECRET
+				appSecret
 			);
 			res.cookie('t', token, { expire: new Date() + 9999 });
 			// return response with user and token to frontend client
