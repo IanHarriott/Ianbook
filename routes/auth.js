@@ -1,8 +1,8 @@
 const express = require('express');
 const {
-	signup,
-	signin,
-	signout,
+	register,
+	login,
+	logout,
 	forgotPassword,
     resetPassword,
     socialLogin
@@ -12,9 +12,9 @@ const { userSignupValidator, passwordResetValidator } = require('../validator');
 
 const router = express.Router();
 
-router.post('/signup', userSignupValidator, signup);
-router.post('/signin', signin);
-router.get('/signout', signout);
+router.post('/register', userSignupValidator, register);
+router.post('/login', login);
+router.get('/logout', logout);
 
 router.post("/social-login", socialLogin); 
 

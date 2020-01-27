@@ -28,7 +28,7 @@ exports.hasAuthorization = (req, res, next) => {
 	}
 };
 
-exports.allUsers = (req, res) => {
+exports.getUsers = (req, res) => {
 	User.find((err, users) => {
 		if (err) {
 			return res.status(400).json({

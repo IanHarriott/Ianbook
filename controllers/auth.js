@@ -5,7 +5,7 @@ const expressJwt = require('express-jwt');
 const User = require('../models/user');
 const _ = require('lodash');
 
-exports.signup = async (req, res) => {
+exports.register = async (req, res) => {
 	const userExists = await User.findOne({ email: req.body.email });
 	if (userExists)
 		return res.status(403).json({
@@ -16,14 +16,14 @@ exports.signup = async (req, res) => {
 	res.status(200).json({ message: 'Signup success! Please login.' });
 };
 
-exports.signin = (req, res) => {
+exports.login = (req, res) => {
 	// find the user based on email
 	const { email, password } = req.body;
 	User.findOne({ email }, (err, user) => {
 		//if error or no user
 		if (err || !user) {
 			return res.status(401).json({
-				error: 'User with that email does not exist. Please signin.'
+				error: 'User with that email does not exist. Please register.'
 			});
 		}
 		//if user is found make sure the email and password match
@@ -43,7 +43,7 @@ exports.signin = (req, res) => {
 	});
 };
 
-exports.signout = (req, res) => {
+exports.logout = (req, res) => {
 	res.clearCookie('t');
 	return res.json({ message: 'Signout success!' });
 };
