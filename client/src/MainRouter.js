@@ -9,12 +9,12 @@ import Register from './components/auth/Register';
 import Users from './components/user/Users';
 // import EditProfile from './user/EditProfile';
 // import FindPeople from './user/FindPeople';
-// import NewPost from './post/NewPost';
-// import SinglePost from './post/SinglePost';
+import CreatePost from './components/post/CreatePost';
+import Post from './components/post/Post';
 // import EditPost from './post/EditPost';
 // import ForgotPassword from './user/ForgotPassword';
 // import ResetPassword from './user/ResetPassword';
-// import PrivateRoute from './auth/PrivateRoute';
+import PrivateRoute from './components/auth/PrivateRoute';
 
 const MainRouter = () => (
 	<div>
@@ -27,8 +27,8 @@ const MainRouter = () => (
 				path='/reset-password/:resetPasswordToken'
 				component={ResetPassword}
 			/> */}
-			{/* <PrivateRoute exact path='/post/create' component={NewPost} /> */}
-			{/* <Route exact path='/post/:postId' component={SinglePost} /> */}
+			<PrivateRoute exact path='/post/create' component={CreatePost} />
+			<Route exact path='/post/:postId' component={Post} />
 			{/* <PrivateRoute
 				exact
 				path='/post/edit/:postId'

@@ -1,18 +1,16 @@
 import React from 'react';
-// import Posts from '../post/Posts';
-// import { MDBContainer, MDBBox, MDBTypography } from 'mdbreact';
+import Posts from '../post/Posts';
 
 const Home = () => (
-	<div>Testing!!</div>
-	// <MDBBox>
-	// 	{/* <MDBBox className='jumbotron'>
-	// 		<MDBTypography tag='h2'>Home</MDBTypography>
-	// 		<p className='lead'>Welcome to React Frontend</p>
-	// 	</MDBBox> */}
-	// 	<MDBContainer>
-	// 		<Posts />
-	// 	</MDBContainer>
-	// </MDBBox>
+	<div>
+		<div className='jumbotron'>
+			<h2>Home</h2>
+			<p className='lead'>Welcome to Ianbook!</p>
+		</div>
+		<div className='container'>
+			<Posts />
+		</div>
+	</div>
 );
 
 export default Home;
