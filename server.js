@@ -61,12 +61,12 @@ app.use(function(err, req, res, next) {
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
 	// Set static fold
-	console.log(path.resolve(__dirname, '../client/build'));
-	app.use(__dirname, express.static('../client/build'));
+	console.log(path.resolve(__dirname, './public'));
+	app.use(__dirname, express.static('./public'));
 
 	app.get('*', (req, res) => {
 		res.sendFile(
-			path.resolve(__dirname, '../client', 'build', 'index.html')
+			path.resolve(__dirname, './public', 'index.html')
 		);
 	});
 }
