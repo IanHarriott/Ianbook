@@ -22,7 +22,7 @@ mongoose
 	});
 
 mongoose.connection.on('error', err => {
-	console.log(`DB connection error: ${error.message}`);
+	console.log(`DB connection error: ${err.message}`);
 });
 
 //bring in routes
