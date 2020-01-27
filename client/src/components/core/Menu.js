@@ -61,7 +61,7 @@ class Menu extends Component {
 								{isAuthenticated().user.name}'s profile
 							</Nav.Link>
 							<Nav.Link
-								href='/signup'
+								href='/register'
 								onClick={() =>
 									logout(() => {
 										history.push('/');

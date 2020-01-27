@@ -1,4 +1,4 @@
-export const read = (userId, token) => {
+export const getUser = (userId, token) => {
 	return fetch(`/api/user/${userId}`, {
 		method: 'GET',
 		headers: {

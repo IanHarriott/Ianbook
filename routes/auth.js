@@ -8,11 +8,11 @@ const {
     socialLogin
 } = require('../controllers/auth');
 const { userById } = require('../controllers/user');
-const { userSignupValidator, passwordResetValidator } = require('../validator');
+const { userRegisterValidator, passwordResetValidator } = require('../validator');
 
 const router = express.Router();
 
-router.post('/register', userSignupValidator, register);
+router.post('/register', userRegisterValidator, register);
 router.post('/login', login);
 router.get('/logout', logout);
 

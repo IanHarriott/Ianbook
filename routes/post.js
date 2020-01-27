@@ -14,7 +14,7 @@ const {
 	comment,
 	uncomment
 } = require('../controllers/post');
-const { requireSignin } = require('../controllers/auth');
+const { requireLogin } = require('../controllers/auth');
 const { userById } = require('../controllers/user');
 const { createPostValidator } = require('../validator');
 
@@ -23,23 +23,23 @@ const router = express.Router();
 router.get('/posts', getPosts);
 
 //like unlike
-router.put('/post/like', requireSignin, like);
-router.put('/post/unlike', requireSignin, unlike);
+router.put('/post/like', requireLogin, like);
+router.put('/post/unlike', requireLogin, unlike);
 
 //comment
-router.put('/post/comment', requireSignin, comment);
-router.put('/post/uncomment', requireSignin, uncomment);
+router.put('/post/comment', requireLogin, comment);
+router.put('/post/uncomment', requireLogin, uncomment);
 
 router.post(
 	'/post/new/:userId',
-	requireSignin,
+	requireLogin,
 	createPost,
 	createPostValidator
 );
-router.get('/posts/by/:userId', requireSignin, postsByUser);
+router.get('/posts/by/:userId', requireLogin, postsByUser);
 router.get('/post/:postId', getPost);
-router.put('/post/:postId', requireSignin, isPoster, updatePost);
-router.delete('/post/:postId', requireSignin, isPoster, deletePost);
+router.put('/post/:postId', requireLogin, isPoster, updatePost);
+router.delete('/post/:postId', requireLogin, isPoster, deletePost);
 //photo
 router.get('/post/photo/:postId', postPhoto);
 

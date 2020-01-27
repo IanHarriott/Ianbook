@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
 		});
 	const user = await new User(req.body);
 	await user.save();
-	res.status(200).json({ message: 'Signup success! Please login.' });
+	res.status(200).json({ message: 'Login success! Please login.' });
 };
 
 exports.login = (req, res) => {
@@ -48,7 +48,7 @@ exports.logout = (req, res) => {
 	return res.json({ message: 'Signout success!' });
 };
 
-exports.requireSignin = expressJwt({
+exports.requireLogin = expressJwt({
 	//if the token is valid, express jwt appends the verified users id
 	//in an auth key to the request object
 	secret: process.env.JWT_SECRET,
@@ -63,7 +63,7 @@ exports.forgotPassword = (req, res) => {
 
 	console.log('forgot password finding user with that email');
 	const { email } = req.body;
-	console.log('signin req.body', email);
+	console.log('login req.body', email);
 	// find the user based on email
 	User.findOne({ email }, (err, user) => {
 		// if err or no user
@@ -138,7 +138,7 @@ exports.resetPassword = (req, res) => {
 };
 
 exports.socialLogin = (req, res) => {
-	// try signup by finding user with req.email
+	// try register by finding user with req.email
 	console.log(req.body);
 	let user = User.findOne({ email: req.body.email }, (err, user) => {
 		if (err || !user) {

@@ -12,23 +12,23 @@ const {
 	removeFollower,
 	findPeople
 } = require('../controllers/user');
-const { requireSignin } = require('../controllers/auth');
+const { requireLogin } = require('../controllers/auth');
 
 const router = express.Router();
 
 //following is used as middleware, follower is the actual method
-router.put('/user/follow', requireSignin, addFollowing, addFollower);
-router.put('/user/unfollow', requireSignin, removeFollowing, removeFollower);
+router.put('/user/follow', requireLogin, addFollowing, addFollower);
+router.put('/user/unfollow', requireLogin, removeFollowing, removeFollower);
 
 router.get('/users', getUsers);
-router.get('/user/:userId', requireSignin, getUser);
-router.put('/user/:userId', requireSignin, updateUser);
-router.delete('/user/:userId', requireSignin, deleteUser);
+router.get('/user/:userId', requireLogin, getUser);
+router.put('/user/:userId', requireLogin, updateUser);
+router.delete('/user/:userId', requireLogin, deleteUser);
 //photo
 router.get('/user/photo/:userId', userPhoto);
 
 //who to follow
-router.get('/user/findpeople/:userId', requireSignin, findPeople)
+router.get('/user/findpeople/:userId', requireLogin, findPeople)
 
 //any route containing :userId, our app will first execute userById()
 router.param('userId', userById);
