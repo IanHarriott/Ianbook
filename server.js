@@ -57,6 +57,7 @@ app.use(function(err, req, res, next) {
 	}
 });
 
-app.listen(process.env.PORT, () => {
-	console.log(`A Node Js API is listening on port: ${process.env.PORT}`);
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+	console.log(`A Node Js API is listening on port: ${port}`);
 });
